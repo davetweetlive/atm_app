@@ -1,12 +1,14 @@
-"""Imported packages, methods, functions as per requirement"""
-from datetime import datetime
+# """Imported packages, methods, functions as per requirement"""
 import time
+from datetime import datetime
 
 """Globally decelared variables"""
 STORED_MONEY = 27000
 TIME_OUT_SEC = 5
+DEFAULT_PIN = 1234
+NO_OF_ATTEMPTS = 3
 
-"""the below function provides UI insstructions to the user"""
+# """the below function provides UI insstructions to the user"""
 def ui_design():
     print('\n\t\t\t\t\t Welcome to the Bank!')
     print('\t\t\t****************************************************')
@@ -15,7 +17,7 @@ def ui_design():
     print('\t\t\t 2. Widrawal \t\t 5. Previous Widrawals')
     print('\t\t\t 3. Balance Enquity \t 6. Pin Change')
 
-"""The following function takes choice as parameter and performas operations according to it """
+# """The following function takes choice as parameter and performas operations according to it """
 def operation_(users_choice):
     if users_choice == '1':
         print('you want to deposit')
@@ -46,13 +48,11 @@ def controller():
 
     while menu_option:
         operation_(menu_option)
+        menu_option = input('Please enter your input. \t')
 
     else:
         print('You need to enter some input!')
-        # timeit.timeit('controller()', 'from __main__ import testing', number=1000)
-        # waiting = Timer(5.0, controller)
-        # waiting.start()
         time.sleep(5)
         controller()
-"""Keeping saparate the call of controller function and commented"""
+# """Keeping saparate the call of controller function and commented"""
 controller()
