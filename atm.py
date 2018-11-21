@@ -1,14 +1,16 @@
 # """Imported packages, methods, functions as per requirement"""
+import os
 import time
 from datetime import datetime
 
-"""Globally decelared variables"""
+#"""Globally decelared variables"""
+TOTAL_AMMOUNT = 0
 STORED_MONEY = 27000
 TIME_OUT_SEC = 5
 DEFAULT_PIN = 1234
 NO_OF_ATTEMPTS = 3
 
-# """the below function provides UI insstructions to the user"""
+# """the below function provides UI insstructions to the user which contains only print statements """
 def ui_design():
     print('\n\t\t\t\t\t Welcome to the Bank!')
     print('\t\t\t****************************************************')
@@ -20,7 +22,10 @@ def ui_design():
 # """The following function takes choice as parameter and performas operations according to it """
 def operation_(users_choice):
     if users_choice == '1':
-        print('you want to deposit')
+        deposit_ammount = input('Enter amount you want to deposit\t')
+        deposit_ammount = int(deposit_ammount)
+        TOTAL_AMMOUNT = STORED_MONEY + deposit_ammount
+        print(f'Your account is created by Rs. {deposit_ammount}\n')
 
     elif users_choice == '2':
         print('you want to withdraw.')
@@ -52,7 +57,9 @@ def controller():
 
     else:
         print('You need to enter some input!')
-        time.sleep(5)
+        time.sleep(TIME_OUT_SEC)
+        os.system('cls')
         controller()
+        
 # """Keeping saparate the call of controller function and commented"""
 controller()
