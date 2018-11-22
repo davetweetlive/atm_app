@@ -67,12 +67,21 @@ def main():
 
     # Menu loop.
     while menu_option:
+
+        # operational choice
         operation_(menu_option)
-        continue_choice = input('Do you still want to continue? Y/N')
 
-        if continue_choice == y or continue_choice == Y:
-            pass
+        continue_choice = input('Do you still want to continue? Y/N\t')
 
+        if continue_choice == 'y' or continue_choice == 'Y':
+            os.system('cls')
+            main()
+        elif continue_choice == 'n' or continue_choice == 'N':
+            os.system('cls')
+            print('Thank you! Visit again')
+            os.system('cls')
+            time.sleep(TIME_OUT_SEC)
+            main()
         menu_option = input('Please enter your input. \t')
 
     else:
