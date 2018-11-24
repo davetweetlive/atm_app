@@ -2,8 +2,8 @@
 # Imported packages, methods, functions as per requirement
 #######################################################################################################################################
 import os
-import csv
 import time
+import csv_file
 from datetime import datetime
 
 #######################################################################################################################################
@@ -32,26 +32,44 @@ def ui_design():
 #######################################################################################################################################
 def operation_(users_choice):
     global TOTAL_AMMOUNT, DEFAULT_PIN
+
+    #Mid of the while if there is no input this block of code will execute
     if users_choice is '':
         print('You have not given any input! Please try again\n')
         time.sleep(1)
     
+    #If choice is 1 deposite feature will execute
     elif users_choice == '1':
         ammount_to_depo = input('Enter the ammount you want to deposite: \t')
         ammount_to_depo = int(ammount_to_depo)
         TOTAL_AMMOUNT = TOTAL_AMMOUNT + ammount_to_depo
         print(f'You have successfully deposited your ammount.')
 
+
+    #If choice is 2 withdraw feature will execute
     elif users_choice == '2':
         ammount_to_withdraw = input('Enter the ammount you want to withdraw: \t')
         ammount_to_withdraw = int(ammount_to_withdraw)
         input_pin = input('Enter PIN: \t')
-        if TOTAL_AMMOUNT >= 0 and TOTAL_AMMOUNT >= ammount_to_withdraw and int(input_pin) == DEFAULT_PIN:
-            TOTAL_AMMOUNT  = TOTAL_AMMOUNT - ammount_to_withdraw
-            print(f'Your account has been debited by Rs. {ammount_to_withdraw}')
-        else:
-            print('Something went wrong!')
 
+        if int(input_pin) == DEFAULT_PIN:
+            if TOTAL_AMMOUNT >= 0 and TOTAL_AMMOUNT >= ammount_to_withdraw:
+                TOTAL_AMMOUNT  = TOTAL_AMMOUNT - ammount_to_withdraw
+                print(f'Your account has been debited by Rs. {ammount_to_withdraw}')
+                
+            else:
+                print('You don\'t have sufficient balance!')
+                time.sleep(TIME_OUT_SEC)
+                os.system('cls')
+                main()
+        else:
+            print('You have entered a wrong PIN')
+            time.sleep(TIME_OUT_SEC)
+            os.system('cls')
+            main()
+
+
+    #This feature depends on recored stored in file
     elif users_choice == '3':
         print(f'Your total ballance is: {TOTAL_AMMOUNT}')
 
