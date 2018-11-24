@@ -13,7 +13,8 @@ STORED_MONEY = 27000
 TIME_OUT_SEC = 5
 DEFAULT_PIN = 1234
 NO_OF_ATTEMPTS = 3
-
+TOTAL_AMMOUNT = STORED_MONEY #Assigned temporarily 
+ 
 #######################################################################################################################################
 # The below function provides UI insstructions to the user.
 #######################################################################################################################################
@@ -22,7 +23,7 @@ def ui_design():
     print('\t\t\t****************************************************')
     print('\t\t\t\t\t Please select....')
     print('\t\t\t 1. Deposit \t\t 4. Previous Deposites')
-    print('\t\t\t 2. Widrawal \t\t 5. Previous Widrawals')
+    print('\t\t\t 2. Withdraw \t\t 5. Previous Widrawals')
     print('\t\t\t 3. Balance Enquity \t 6. Pin Change')
     print('\t\t\t 7. Exit')
 
@@ -30,24 +31,28 @@ def ui_design():
 # The following function takes choice as parameter and performas operations according to it.
 #######################################################################################################################################
 def operation_(users_choice):
+    global TOTAL_AMMOUNT
     if users_choice is '':
         print('You have not given any input! Please try again\n')
         time.sleep(1)
     
     elif users_choice == '1':
-        print('you want to deposit')
+        ammount_to_depo = input('Enter the ammount you want to deposite. \t')
+        ammount_to_depo = int(ammount_to_depo)
+        TOTAL_AMMOUNT = TOTAL_AMMOUNT + ammount_to_depo
+        print(f'You have successfully deposited your ammount.')
 
     elif users_choice == '2':
         print('you want to withdraw.')
 
     elif users_choice == '3':
-        print('Balance Enquity.')
+        print(f'Your total ballance is: {TOTAL_AMMOUNT}')
 
     elif users_choice == '4':
         print('Previous Deposite.')
 
     elif users_choice == '5':
-        print('Previous Widrawals.')
+        print('Previous withdrawal.')
 
     elif users_choice == '6':
         print('Pin Change.')
