@@ -16,20 +16,22 @@ NO_OF_ATTEMPTS = 3
 
 #######################################################################################################################################
 # The below function provides UI insstructions to the user.
-#######################################################################################################################################def ui_design():
+#######################################################################################################################################
+def ui_design():
     print('\n\t\t\t\t\t Welcome to the Bank!')
     print('\t\t\t****************************************************')
     print('\t\t\t\t\t Please select....')
     print('\t\t\t 1. Deposit \t\t 4. Previous Deposites')
     print('\t\t\t 2. Widrawal \t\t 5. Previous Widrawals')
     print('\t\t\t 3. Balance Enquity \t 6. Pin Change')
+    print('\t\t\t 7. Exit')
 
 #######################################################################################################################################
 # The following function takes choice as parameter and performas operations according to it.
 #######################################################################################################################################
 def operation_(users_choice):
     if users_choice is '':
-        print('You need to enter some input!')
+        print('You have not given any input! Please try again\n')
         time.sleep(1)
     
     elif users_choice == '1':
@@ -83,12 +85,12 @@ def main():
             os.system('cls')
             main()
         else:
-            pass
+            print('You have given a wrong input! Please try again.')
 
         menu_option = input('Please enter your input. \t')
 
     else:
-        print('You need to enter some input!')
+        print('You have not given any input! Please try again\n')
         time.sleep(TIME_OUT_SEC)
         os.system('cls')
         main()
