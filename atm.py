@@ -31,19 +31,26 @@ def ui_design():
 # The following function takes choice as parameter and performas operations according to it.
 #######################################################################################################################################
 def operation_(users_choice):
-    global TOTAL_AMMOUNT
+    global TOTAL_AMMOUNT, DEFAULT_PIN
     if users_choice is '':
         print('You have not given any input! Please try again\n')
         time.sleep(1)
     
     elif users_choice == '1':
-        ammount_to_depo = input('Enter the ammount you want to deposite. \t')
+        ammount_to_depo = input('Enter the ammount you want to deposite: \t')
         ammount_to_depo = int(ammount_to_depo)
         TOTAL_AMMOUNT = TOTAL_AMMOUNT + ammount_to_depo
         print(f'You have successfully deposited your ammount.')
 
     elif users_choice == '2':
-        print('you want to withdraw.')
+        ammount_to_withdraw = input('Enter the ammount you want to withdraw: \t')
+        ammount_to_withdraw = int(ammount_to_withdraw)
+        input_pin = input('Enter PIN: \t')
+        if TOTAL_AMMOUNT >= 0 and TOTAL_AMMOUNT >= ammount_to_withdraw and int(input_pin) == DEFAULT_PIN:
+            TOTAL_AMMOUNT  = TOTAL_AMMOUNT - ammount_to_withdraw
+            print(f'Your account has been debited by Rs. {ammount_to_withdraw}')
+        else:
+            print('Something went wrong!')
 
     elif users_choice == '3':
         print(f'Your total ballance is: {TOTAL_AMMOUNT}')
