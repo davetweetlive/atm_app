@@ -3,7 +3,7 @@
 #######################################################################################################################################
 import os
 import time
-import csv_file
+from csv_file import read_csv_file, update_csv_file
 from datetime import datetime
 
 #######################################################################################################################################
@@ -55,6 +55,7 @@ def operation_(users_choice):
         if int(input_pin) == DEFAULT_PIN:
             if TOTAL_AMMOUNT >= 0 and TOTAL_AMMOUNT >= ammount_to_withdraw:
                 TOTAL_AMMOUNT  = TOTAL_AMMOUNT - ammount_to_withdraw
+                update_csv_file(datetime.now(), ammount_to_withdraw, 'Withdraw', TOTAL_AMMOUNT)
                 print(f'Your account has been debited by Rs. {ammount_to_withdraw}')
                 
             else:
@@ -83,7 +84,7 @@ def operation_(users_choice):
         print('Pin Change.')
     
     elif users_choice == '7':
-        print('Bye!');
+        print('Bye!')
     
     else: 
         print('You have selected a wrong option!')
