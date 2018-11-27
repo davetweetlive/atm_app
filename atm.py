@@ -3,8 +3,9 @@
 #######################################################################################################################################
 import os
 import time
-from csv_file import read_csv_file, update_csv_file
 from datetime import datetime
+from csv_file import read_csv_file, update_csv_file
+from csv_file import read_global_variable, update_global_variable
 
 #######################################################################################################################################
 # Globally decelared variables.
@@ -40,9 +41,10 @@ def operation_(users_choice):
     
     #If choice is 1 deposite feature will execute
     elif users_choice == '1':
-        ammount_to_depo = input('Enter the ammount you want to deposite: \t')
+        ammount_to_depo = input('Enter the ammount you want to deposit: \t')
         ammount_to_depo = int(ammount_to_depo)
         TOTAL_AMMOUNT = TOTAL_AMMOUNT + ammount_to_depo
+        update_csv_file(datetime.now(), ammount_to_depo, 'Deposit', TOTAL_AMMOUNT)
         print(f'You have successfully deposited your ammount.')
 
 
